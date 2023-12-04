@@ -17,3 +17,5 @@
     TP: 16  | FN: 4
     FP: 6 	| TN: 54
 
+### Running inference:
+    

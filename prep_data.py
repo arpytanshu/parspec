@@ -5,7 +5,7 @@ import fire
 import PyPDF2
 import pandas as pd
 
-from utils import progress_bar
+from parspec.utils import progress_bar
 
 def extract_text_from_pdf(pdf_path):
     pdf_file = open(pdf_path, 'rb')

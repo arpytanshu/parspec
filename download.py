@@ -5,7 +5,7 @@ import os
 import fire
 from pathlib import Path
 import multiprocessing
-from utils import progress_bar
+from parspec.utils import progress_bar
 
 def download_link(link, dst_file):
 
