@@ -5,7 +5,8 @@ import os
 import fire
 from pathlib import Path
 import multiprocessing
-from parspec.utils import progress_bar
+import sys
+
 
 def download_link(link, dst_file):
 
@@ -36,7 +37,19 @@ def download_link(link, dst_file):
         except requests.exceptions.RequestException as err:
             print(f'Error downloading {link}: {err}')
             return False
-    
+
+
+def progress_bar(current, total, bar_length=50, text="Progress"):
+    anitext = ['\\', '|', '/', '-']
+    percent = float(current) / total
+    abs = f"{{{current} / {total}}}"
+    arrow = '|' * int(round(percent * bar_length))
+    spaces = ' ' * (bar_length - len(arrow))
+    text = '[' + anitext[(current % 4)] + '] ' + text
+    sys.stdout.write("\r{0}: [{1}] {2}% {3}".format(text, arrow + spaces, int(round(percent * 100)), abs))
+    sys.stdout.flush()
+
+
 def main(meta_path, dst_dir_path, threads=1):
     df = pd.read_csv(meta_path)
     
